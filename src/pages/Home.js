@@ -14,14 +14,21 @@ const Home = ({ navigation }) => {
                         <MyImageButton
                             title="Registro de Funcionário"
                             btnColor='#2992C4'
-                            btnIcon="user-plus"
+                            btnIcon="check"
                             customClick={() => navigation.navigate('HomeScreenFuncionario')}
                         />
 
                         <MyImageButton
                             title="Registro de Tipo de Serviço"
-                            btnColor='#A45BB9'
-                            btnIcon="user-circle"
+                            btnColor='#00FA9A'
+                            btnIcon="check"
+                            customClick={() => navigation.navigate('HomeScreenTipoServico')}
+                        />
+
+                        <MyImageButton
+                            title="Registrar Serviço Realizado"
+                            btnColor='#FFD700'
+                            btnIcon="check"
                             customClick={() => navigation.navigate('HomeScreenTipoServico')}
                         />
                     </View>
