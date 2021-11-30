@@ -18,6 +18,8 @@ import ViewTipoServico from "./src/pages/tipo-servico/ViewTipoServico";
 import ViewAllTipoServico from "./src/pages/tipo-servico/ViewAllTipoServico";
 import DeleteTipoServico from "./src/pages/tipo-servico/DeleteTipoServico";
 import Home from "./src/pages/Home";
+import HomeScreenServicoRealizado from "./src/pages/servico-realizado/HomeScreenServicoRealizado";
+import RegisterServicoRealizado from "./src/pages/servico-realizado/RegisterServicoRealizado";
 
 
 const Stack = createStackNavigator();
@@ -222,6 +224,36 @@ const App = () => {
                         },
                     }}
                 />
+
+                <Stack.Screen
+                    name="HomeScreenServicoRealizado"
+                    component={HomeScreenServicoRealizado}
+                    options={{
+                        title: 'Registrar Serviço Realizado',
+                        headerStyle: {
+                            backgroundColor: '#00AD98',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+                <Stack.Screen
+                    name="RegisterServicoRealizado"
+                    component={RegisterServicoRealizado}
+                    options={{
+                        title: 'Cadastrar Serviço Realizado',
+                        headerStyle: {
+                            backgroundColor: '#2992C4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

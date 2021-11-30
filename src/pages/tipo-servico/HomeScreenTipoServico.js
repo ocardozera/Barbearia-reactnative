@@ -1,29 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, SafeAreaView } from 'react-native';
 import MyImageButton from '../components/MyImageButton';
-import { DatabaseConnection } from '../../database/database-connection';
-
-const db = DatabaseConnection.getConnection();
 
 const HomeScreenTipoServico = ({ navigation }) => {
-    useEffect(() => {
-        db.transaction(function (txn) {
-            txn.executeSql(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name='table_tipo_servico'",
-                [],
-                function (tx, res) {
-                    console.log('item:', res.rows.length);
-                    if (res.rows.length == 0) {
-                        txn.executeSql('DROP TABLE IF EXISTS table_tipo_servico', []);
-                        txn.executeSql(
-                            'CREATE TABLE IF NOT EXISTS table_tipo_servico(tipo_servico_id INTEGER PRIMARY KEY AUTOINCREMENT, nome_servico VARCHAR(99), preco_servico VARCHAR(6))',
-                            []
-                        );
-                    }
-                }
-            );
-        });
-    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -32,33 +11,33 @@ const HomeScreenTipoServico = ({ navigation }) => {
                     <View style={{ flex: 1 }}>
 
                         <MyImageButton
-                            title="Registrar Tipo de Servico"
+                            title="Registrar Tipo de Serviço"
                             btnColor='#2992C4'
                             btnIcon="user-plus"
                             customClick={() => navigation.navigate('RegisterTipoServico')}
                         />
 
                         <MyImageButton
-                            title="Atualizar Tipo de Servico"
+                            title="Atualizar Tipo de Serviço"
                             btnColor='#A45BB9'
                             btnIcon="user-circle"
                             customClick={() => navigation.navigate('UpdateTipoServico')}
                         />
 
                         <MyImageButton
-                            title="Visualizar Tipos de Servicos"
+                            title="Visualizar um Tipo de Serviço"
                             btnColor='#F9AD29'
                             btnIcon="user"
                             customClick={() => navigation.navigate('ViewTipoServico')}
                         />
                         <MyImageButton
-                            title="Visualizar Todos Tipo Servico"
+                            title="Visualizar Todos os Tipos Serviços"
                             btnColor='#384F62'
                             btnIcon="users"
                             customClick={() => navigation.navigate('ViewAllTiposServicos')}
                         />
                         <MyImageButton
-                            title="Excluir Tipo de Servico"
+                            title="Excluir Tipo de Serviço"
                             btnColor='#D1503A'
                             btnIcon="user-times"
                             customClick={() => navigation.navigate('DeleteTipoServico')}
