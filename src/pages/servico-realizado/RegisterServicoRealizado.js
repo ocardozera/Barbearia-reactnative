@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-    View,
-    ScrollView,
-    KeyboardAvoidingView,
-    Alert,
-    SafeAreaView,
-    Picker
-} from 'react-native';
+import { View, ScrollView, KeyboardAvoidingView, Alert, SafeAreaView } from 'react-native';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
