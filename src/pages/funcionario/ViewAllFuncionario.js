@@ -16,7 +16,10 @@ const ViewAllFuncionario = () => {
           var temp = [];
           for (let i = 0; i < results.rows.length; ++i)
             temp.push(results.rows.item(i));
+            console.log(temp);
           setFlatListItems(temp);
+
+
         }
       );
     });
