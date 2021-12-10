@@ -19,12 +19,12 @@ const UpdateFuncionario = ({ navigation }) => {
   let [inputUserId, setInputUserId] = useState('');
   let [userName, setUserName] = useState('');
   let [userContact, setUserContact] = useState('');
-  let [userAddress, setUserAddress] = useState('');
+  // let [userAddress, setUserAddress] = useState('');
 
-  let updateAllStates = (name, contact, address) => {
+  let updateAllStates = (name, contact) => {
     setUserName(name);
     setUserContact(contact);
-    setUserAddress(address);
+    // setUserAddress(address);
   };
 
   let searchUser = () => {
@@ -39,8 +39,7 @@ const UpdateFuncionario = ({ navigation }) => {
             let res = results.rows.item(0);
             updateAllStates(
               res.funcionario_nome,
-              res.funcionario_telefone,
-              res.user_address
+              res.funcionario_telefone
             );
           } else {
             alert('Funcionario não encontrado!');
@@ -51,7 +50,7 @@ const UpdateFuncionario = ({ navigation }) => {
     });
   };
   let updateUser = () => {
-    console.log(inputUserId, userName, userContact, userAddress);
+    console.log(inputUserId, userName, userContact);
 
     if (!inputUserId) {
       alert('Por Favor informe o Código!');
@@ -65,15 +64,11 @@ const UpdateFuncionario = ({ navigation }) => {
       alert('Por Favor informe o Telefone !');
       return;
     }
-    if (!userAddress) {
-      alert('Por Favor informe o endereço !');
-      return;
-    }
 
     db.transaction((tx) => {
       tx.executeSql(
         'UPDATE table_funcionario set funcionario_nome=?, funcionario_telefone=? where funcionario_id=?',
-        [userName, userContact, userAddress, inputUserId],
+        [userName, userContact, inputUserId],
         (tx, results) => {
           console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
@@ -131,17 +126,6 @@ const UpdateFuncionario = ({ navigation }) => {
                 maxLength={11}
                 style={{ padding: 10 }}
                 keyboardType="numeric"
-              />
-              <Mytextinput
-                value={userAddress}
-                placeholder="Entre com o Endereço"
-                onChangeText={
-                  (userAddress) => setUserAddress(userAddress)
-                }
-                maxLength={225}
-                numberOfLines={5}
-                multiline={true}
-                style={{ textAlignVertical: 'top', padding: 10 }}
               />
               <Mybutton
                 title="Atualizar Funcionario"

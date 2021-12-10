@@ -62,8 +62,6 @@ const UpdateTipoServico = ({ navigation }) => {
             alert('Por Favor informe o Preço do Serviço !');
             return;
         }
-        // 'CREATE TABLE IF NOT EXISTS table_tipo_servico(tipo_servico_id INTEGER PRIMARY KEY AUTOINCREMENT, nome_servico VARCHAR(99), preco_servico VARCHAR(6))',
-
 
         db.transaction((tx) => {
             tx.executeSql(

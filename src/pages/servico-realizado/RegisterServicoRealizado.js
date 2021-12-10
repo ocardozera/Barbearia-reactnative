@@ -1,44 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     ScrollView,
     KeyboardAvoidingView,
     Alert,
     SafeAreaView,
-    Picker
+    Picker, StyleSheet
 } from 'react-native';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
-import PickerItem from "react-native-web/dist/exports/Picker/PickerItem";
-import Select from 'react-select';
 
 const db = DatabaseConnection.getConnection();
 
-const RegisterServicoRealizado = ({ navigation }) => {
+
+const listaTipoServico = [];
+
+const buscaFuncionarios = () => {
+    if (listaFuncionarios.length == 0) {
+        useEffect(() => {
+            db.transaction((tx) => {
+                tx.executeSql(
+                    'SELECT * FROM table_funcionario',
+                    [],
+                    (tx, results) => {
+                        var temp = [];
+                        for (let i = 0; i < results.rows.length; ++i)
+                            listaFuncionarios.push(results.rows.item(i));
+                    }
+                );
+            });
+        }, []);
+    }
+};
+
+const buscaTipoServico = () => {
+    if (listaTipoServico.length == 0) {
+        useEffect(() => {
+            db.transaction((tx) => {
+                tx.executeSql(
+                    'SELECT * FROM table_tipo_servico',
+                    [],
+                    (tx, results) => {
+                        var temp = [];
+                        for (let i = 0; i < results.rows.length; ++i)
+                            listaTipoServico.push(results.rows.item(i));
+                    }
+                );
+            });
+        }, []);
+    }
+};
+
+const RegisterServicoRealizado = ({navigation}) => {
+    // buscaFuncionarios();
+    // buscaTipoServico();
+
     let [nomeFuncionario, setFuncionario] = useState('');
     let [nomeCliente, setNomeCliente] = useState('');
     let [nomeServico, setNomeServico] = useState('');
     let [precoServico, setPrecoServico] = useState('')
-
-    let [selectedValue, setSelectedValue] = useState('');
-    let listaFuncionarios = [];
-
-
-      useEffect(() => {
-        db.transaction((tx) => {
-          tx.executeSql(
-            'SELECT * FROM table_funcionario',
-            [],
-            (tx, results) => {
-              var temp = [];
-              for (let i = 0; i < results.rows.length; ++i)
-                listaFuncionarios.push(results.rows.item(i));
-            }
-          );
-        });
-      }, []);
-
+    //
+    let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('TESTE');
+    // let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
 
 
     let register_user = () => {
@@ -60,7 +84,7 @@ const RegisterServicoRealizado = ({ navigation }) => {
             alert('Por favor preencha o preço do serviço!');
             return;
         }
-            db.transaction(function (tx) {
+        db.transaction(function (tx) {
             tx.executeSql(
                 'INSERT INTO table_servico_realizado (funcionario_nome, cliente_nome, nome_servico, preco_servico) VALUES (?,?)',
                 [nomeServico, precoServico],
@@ -76,7 +100,7 @@ const RegisterServicoRealizado = ({ navigation }) => {
                                     onPress: () => navigation.navigate('HomeScreenServicoRealizado'),
                                 },
                             ],
-                            { cancelable: false }
+                            {cancelable: false}
                         );
                     } else alert('Erro ao tentar Registrar o Serviço Realizado!!!');
                 }
@@ -84,84 +108,60 @@ const RegisterServicoRealizado = ({ navigation }) => {
         });
     };
 
-//      let listItemView = (item) => {
-//        return (
-//          <View
-//            key={item.funcionario_id}
-//            style={{ backgroundColor: '#EEE', marginTop: 20, padding: 30, borderRadius: 10 }}>
-//            <Text style={styles.textheader}>Código</Text>
-//            <Text style={styles.textbottom}>{item.funcionario_id}</Text>
-//
-//            <Text style={styles.textheader}>Nome</Text>
-//            <Text style={styles.textbottom}>{item.funcionario_nome}</Text>
-//
-//            <Text style={styles.textheader}>Contato</Text>
-//            <Text style={styles.textbottom}>{item.funcionario_telefone}</Text>
-//
-//
-//          </View>
-//        );
-//      };
+    let [listaFuncionarios, setListaFuncionarios] = useState([]);
 
-//        return (
-//          <SafeAreaView style={{ flex: 1 }}>
-//            <View style={{ flex: 1, backgroundColor: 'white' }}>
-//              <View style={{ flex: 1 }}>
-//                <FlatList
-//                  style={{ marginTop: 30 }}
-//                  contentContainerStyle={{ paddingHorizontal: 20 }}
-//                  data={flatListItems}
-//                  keyExtractor={(item, index) => index.toString()}
-//                  renderItem={({ item }) => listItemView(item)}
-//                />
-//              </View>
-//            </View>
-//          </SafeAreaView>
-//        );
+
+
+        useEffect(() => {
+            async function fetchMyAPI() {
+                db.transaction((tx) => {
+                    tx.executeSql(
+                        'SELECT * FROM table_funcionario',
+                        [],
+                        (tx, results) => {
+                            setListaFuncionarios(Array.from(results.rows));
+                        }
+                    );
+                });
+            }
+
+            fetchMyAPI()
+        }, [])
 
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <View style={{flex: 1}}>
 
-
-
-
                     <ScrollView keyboardShouldPersistTaps="handled">
-
-
 
                         <KeyboardAvoidingView
                             behavior="padding"
                             style={{flex: 1, justifyContent: 'space-between'}}>
 
-
-
-
-
                             <Mytextinput
-                                placeholder="Entre com o Nome do Funcionário"
+                                placeholder="Nome do Funcionário"
                                 onChangeText={
                                     (nomeFuncionario) => setFuncionario(nomeFuncionario)
                                 }
                                 style={{padding: 10}}
                             />
                             <Mytextinput
-                                placeholder="Entre com o Nome do Cliente"
+                                placeholder="Nome do Cliente"
                                 onChangeText={
                                     (nomeCliente) => setNomeCliente(nomeCliente)
                                 }
                                 style={{padding: 10}}
                             />
                             <Mytextinput
-                                placeholder="Entre com o Nome do Serviço"
+                                placeholder="Nome do Serviço"
                                 onChangeText={
                                     (nomeServico) => setNomeServico(nomeServico)
                                 }
                                 style={{padding: 10}}
                             />
                             <Mytextinput
-                                placeholder="Entre com o valor do serviço"
+                                placeholder="Valor do serviço"
                                 onChangeText={
                                     (precoServico) => setPrecoServico(precoServico)
                                 }
@@ -169,9 +169,34 @@ const RegisterServicoRealizado = ({ navigation }) => {
                                 keyboardType="numeric"
                                 style={{padding: 10}}
                             />
+
+                            <Picker
+                                style={styles.button}
+                                multiple={false}
+                                selectedValue={selectedValueFuncionario}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValueFuncionario(itemValue)}>{
+                                listaFuncionarios.map((v) => (
+                                    <Picker.Item label={v.funcionario_nome} value={v.funcionario_id} key={v.funcionario_id} />
+                                    )
+                                )
+                            }
+                            </Picker>
+
+                            {/*<Picker*/}
+                            {/*    style={styles.button}*/}
+                            {/*    selectedValue={listaFuncionarios}*/}
+                            {/*    onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>{*/}
+                            {/*    listaTipoServico.map((v) => {*/}
+                            {/*        return <Picker.Item label={v.nome_servico} value={v.tipo_servico_id}/>*/}
+                            {/*    })*/}
+                            {/*}*/}
+                            {/*</Picker>*/}
+
                             <Mybutton title="Salvar" customClick={register_user}/>
+
                         </KeyboardAvoidingView>
                     </ScrollView>
+
                 </View>
             </View>
         </SafeAreaView>
@@ -179,16 +204,14 @@ const RegisterServicoRealizado = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  textheader: {
-    color: '#111',
-    fontSize: 12,
-    fontWeight: '700',
-
-  },
-  textbottom: {
-    color: '#111',
-    fontSize: 18,
-  },
+    button: {
+        marginLeft: 35,
+        marginRight: 35,
+        marginTop: 10,
+        borderColor: '#00AD98',
+        borderWidth: 1,
+        right: 35,
+    },
 });
 
 export default RegisterServicoRealizado;

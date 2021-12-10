@@ -36,7 +36,7 @@ const HomeScreenFuncionario = ({ navigation }) => {
               customClick={() => navigation.navigate('ViewAllFuncionarios')}
             />
             <MyImageButton
-              title="Excluir Funcionário1"
+              title="Excluir Funcionário"
               btnColor='#D1503A'
               btnIcon="user-times"
               customClick={() => navigation.navigate('DeleteFuncionario')}
