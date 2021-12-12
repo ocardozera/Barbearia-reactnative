@@ -4,14 +4,13 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     Alert,
-    SafeAreaView,
-    Text,
+    SafeAreaView, StyleSheet,
 } from 'react-native';
 
-import Mytext from '../components/Mytext';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
+import {TextInputMask} from "react-native-masked-text";
 
 const db = DatabaseConnection.getConnection();
 
@@ -95,9 +94,8 @@ const UpdateTipoServico = ({ navigation }) => {
                         <KeyboardAvoidingView
                             behavior="padding"
                             style={{ flex: 1, justifyContent: 'space-between' }}>
-                            <Mytext text="Filtro de Tipo de Serviço" />
                             <Mytextinput
-                                placeholder="Entre com o Código do Tipo de Serviço"
+                                placeholder="Digite o Código do Tipo de Serviço"
                                 style={{ padding: 10 }}
                                 onChangeText={
                                     (inputServicoId) => setInputServicoId(inputServicoId)
@@ -108,22 +106,32 @@ const UpdateTipoServico = ({ navigation }) => {
                                 customClick={searchUser}
                             />
                             <Mytextinput
-                                placeholder="Entre com o Nome do Serviço"
+                                placeholder="Digite o Nome do Serviço"
                                 value={servicoNome}
                                 style={{ padding: 10 }}
                                 onChangeText={
                                     (servicoNome) => setServicoName(servicoNome)
                                 }
                             />
-                            <Mytextinput
-                                placeholder="Entre com o Valor do serviço"
-                                value={'' + servicoPreco}
+                            <TextInputMask
+                                placeholder="Valor do Serviço R$"
+                                type={'money'}
+                                style={styles.inputText}
+                                keyboardType="numeric"
+                                blurOnSubmit={false}
+                                underlineColorAndroid="transparent"
+                                placeholderTextColor="#00AD98"
+                                options={{
+                                    precision: 2,
+                                    separator: ',',
+                                    delimiter: '.',
+                                    unit: 'R$',
+                                    suffixUnit: ''
+                                }}
+                                value={servicoPreco}
                                 onChangeText={
                                     (servicoPreco) => setServicoPreco(servicoPreco)
                                 }
-                                maxLength={11}
-                                style={{ padding: 10 }}
-                                keyboardType="numeric"
                             />
                             <Mybutton
                                 title="Atualizar Tipo de Serviço"
@@ -136,5 +144,18 @@ const UpdateTipoServico = ({ navigation }) => {
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    inputText: {
+        marginLeft: 25,
+        marginRight: 25,
+        marginTop: 10,
+        borderColor: '#00AD98',
+        borderWidth: 1,
+        height: 50,
+        padding: 10,
+        borderRadius: 20,
+    },
+});
 
 export default UpdateTipoServico;

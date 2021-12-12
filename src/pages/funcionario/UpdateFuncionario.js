@@ -5,13 +5,14 @@ import {
   KeyboardAvoidingView,
   Alert,
   SafeAreaView,
-  Text,
+  Text, StyleSheet,
 } from 'react-native';
 
 import Mytext from '../components/Mytext';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
+import {TextInputMask} from "react-native-masked-text";
 
 const db = DatabaseConnection.getConnection();
 
@@ -19,12 +20,10 @@ const UpdateFuncionario = ({ navigation }) => {
   let [inputUserId, setInputUserId] = useState('');
   let [userName, setUserName] = useState('');
   let [userContact, setUserContact] = useState('');
-  // let [userAddress, setUserAddress] = useState('');
 
   let updateAllStates = (name, contact) => {
     setUserName(name);
     setUserContact(contact);
-    // setUserAddress(address);
   };
 
   let searchUser = () => {
@@ -60,8 +59,16 @@ const UpdateFuncionario = ({ navigation }) => {
       alert('Por favor informe o Nome !');
       return;
     }
+    if (userName.length < 8) {
+      alert('Nome deve ser possuír ao menos 8 dígitos!');
+      return;
+    }
     if (!userContact) {
-      alert('Por Favor informe o Telefone !');
+      alert('Por favor preencha o telefone');
+      return;
+    }
+    if (userContact.length < 14) {
+      alert('Por favor, preencha o telefone com todos os dígitos');
       return;
     }
 
@@ -97,9 +104,8 @@ const UpdateFuncionario = ({ navigation }) => {
             <KeyboardAvoidingView
               behavior="padding"
               style={{ flex: 1, justifyContent: 'space-between' }}>
-              <Mytext text="Filtro de Funcionario" />
               <Mytextinput
-                placeholder="Entre com o Código do Funcionario"
+                placeholder="Digite o Código do Funcionário"
                 style={{ padding: 10 }}
                 onChangeText={
                   (inputUserId) => setInputUserId(inputUserId)
@@ -110,25 +116,34 @@ const UpdateFuncionario = ({ navigation }) => {
                 customClick={searchUser}
               />
               <Mytextinput
-                placeholder="Entre com o Nome"
+                placeholder="Digite o Nome Completo"
                 value={userName}
                 style={{ padding: 10 }}
                 onChangeText={
                   (userName) => setUserName(userName)
                 }
               />
-              <Mytextinput
-                placeholder="Entre com o Telefone"
-                value={'' + userContact}
-                onChangeText={
-                  (userContact) => setUserContact(userContact)
-                }
-                maxLength={11}
-                style={{ padding: 10 }}
-                keyboardType="numeric"
+              <TextInputMask
+                  placeholder="Telefone com Apenas Números"
+                  maxLength={15}
+                  keyboardType="numeric"
+                  blurOnSubmit={false}
+                  underlineColorAndroid="transparent"
+                  placeholderTextColor="#00AD98"
+                  style={styles.inputText}
+                  type={'cel-phone'}
+                  options={{
+                    maskType: 'BRL',
+                    withDDD: true,
+                    dddMask: '(99) '
+                  }}
+                  value={'' + userContact}
+                  onChangeText={
+                    (userContact) => setUserContact(userContact)
+                  }
               />
               <Mybutton
-                title="Atualizar Funcionario"
+                title="Atualizar Funcionário"
                 customClick={updateUser}
               />
             </KeyboardAvoidingView>
@@ -138,5 +153,18 @@ const UpdateFuncionario = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  inputText: {
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 10,
+    borderColor: '#00AD98',
+    borderWidth: 1,
+    height: 50,
+    padding: 10,
+    borderRadius: 20,
+  },
+});
 
 export default UpdateFuncionario;

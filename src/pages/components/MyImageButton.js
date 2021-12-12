@@ -9,11 +9,14 @@ const MyImageButton = (props) => {
       style={[styles.button, { backgroundColor: props.btnColor }]}
       onPress={props.customClick}>
 
-      <Icon style={styles.icon}
-        name={props.btnIcon} size={30} color='white' />
-
       <Text style={styles.text}>
         {props.title}
+        <Icon
+            style={styles.icon}
+            name={props.btnIcon}
+            size={20}
+            color='white'
+        />
       </Text>
     </TouchableOpacity>
   );
@@ -21,16 +24,18 @@ const MyImageButton = (props) => {
 
 const styles = StyleSheet.create({
   button: {
+    height: 50,
     alignItems: 'center',
     color: '#ffffff',
     padding: 10,
     marginTop: 16,
     marginLeft: 35,
     marginRight: 35,
-    borderRadius: 5,
+    borderRadius: 20,
   },
   text: {
     color: '#ffffff',
+    fontSize: 17,
   },
   icon: {
     paddingBottom: 5,

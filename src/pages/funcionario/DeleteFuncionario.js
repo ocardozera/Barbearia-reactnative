@@ -41,13 +41,16 @@ const DeleteFuncionario = ({ navigation }) => {
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
           <Mytextinput
-            placeholder="Entre com o Código do Funcionário"
+            placeholder="Digite o Código do Funcionário"
             onChangeText={
               (inputUserId) => setInputUserId(inputUserId)
             }
-            style={{ padding: 10 }}
+            style={{ padding: 10, }}
           />
-          <Mybutton title="Excluir Funcionário" customClick={deleteUser} />
+          <Mybutton 
+              title="Excluir Funcionário" 
+              customClick={deleteUser}
+          />
         </View>
       </View>
     </SafeAreaView>

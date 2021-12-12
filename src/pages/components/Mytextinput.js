@@ -5,11 +5,12 @@ const Mytextinput = (props) => {
   return (
     <View
       style={{
-        marginLeft: 35,
-        marginRight: 35,
+        marginLeft: 25,
+        marginRight: 25,
         marginTop: 10,
         borderColor: '#00AD98',
         borderWidth: 1,
+        borderRadius: 20,
       }}>
       <TextInput
         underlineColorAndroid="transparent"

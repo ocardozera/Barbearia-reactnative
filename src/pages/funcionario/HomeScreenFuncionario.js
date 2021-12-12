@@ -10,33 +10,33 @@ const HomeScreenFuncionario = ({ navigation }) => {
           <View style={{ flex: 1 }}>
 
             <MyImageButton
-              title="Registrar Funcionário"
+              title="Registrar Funcionário  "
               btnColor='#2992C4'
               btnIcon="user-plus"
               customClick={() => navigation.navigate('RegisterFuncionario')}
             />
 
             <MyImageButton
-              title="Atualizar Funcionário"
+              title="Atualizar Funcionário  "
               btnColor='#A45BB9'
               btnIcon="user-circle"
               customClick={() => navigation.navigate('UpdateFuncionario')}
             />
 
             <MyImageButton
-              title="Visualizar Funcionário"
+              title="Visualizar Funcionário  "
               btnColor='#F9AD29'
               btnIcon="user"
               customClick={() => navigation.navigate('ViewFuncionario')}
             />
             <MyImageButton
-              title="Visualizar Todos"
+              title="Visualizar Todos Funcionários  "
               btnColor='#384F62'
               btnIcon="users"
               customClick={() => navigation.navigate('ViewAllFuncionarios')}
             />
             <MyImageButton
-              title="Excluir Funcionário"
+              title="Excluir Funcionário  "
               btnColor='#D1503A'
               btnIcon="user-times"
               customClick={() => navigation.navigate('DeleteFuncionario')}

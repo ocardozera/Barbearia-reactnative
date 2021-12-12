@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     padding: 10,
     marginTop: 16,
-    marginLeft: 35,
-    marginRight: 35,
-    borderRadius: 5,
+    marginLeft: 25,
+    marginRight: 25,
+    borderRadius: 25,
   },
   text: {
     color: '#ffffff',
+    fontSize: 17,
   },
 });
 

@@ -49,7 +49,7 @@ const App = () => {
                     name="HomeScreenFuncionario"
                     component={HomeScreenFuncionario}
                     options={{
-                        title: 'Registro de Funcionarios',
+                        title: 'Registro de Funcionários',
                         headerStyle: {
                             backgroundColor: '#00AD98',
                         },
@@ -64,7 +64,7 @@ const App = () => {
                     name="RegisterFuncionario"
                     component={RegisterFuncionario}
                     options={{
-                        title: 'Cadastrar Funcionario',
+                        title: 'Cadastrar Funcionário',
                         headerStyle: {
                             backgroundColor: '#2992C4',
                         },
@@ -79,9 +79,9 @@ const App = () => {
                     name="UpdateFuncionario"
                     component={UpdateFuncionario}
                     options={{
-                        title: 'Atualizar Funcionario',
+                        title: 'Atualizar Funcionário',
                         headerStyle: {
-                            backgroundColor: '#A45BB9',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -94,9 +94,9 @@ const App = () => {
                     name="ViewFuncionario"
                     component={ViewFuncionario}
                     options={{
-                        title: 'Visualizar Funcionario',
+                        title: 'Visualizar Funcionário',
                         headerStyle: {
-                            backgroundColor: '#F9AD29',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -109,9 +109,9 @@ const App = () => {
                     name="ViewAllFuncionarios"
                     component={ViewAllFuncionario}
                     options={{
-                        title: 'Visualizar Todos os Funcionarios',
+                        title: 'Todos os Funcionários',
                         headerStyle: {
-                            backgroundColor: '#384F62',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -124,9 +124,9 @@ const App = () => {
                     name="DeleteFuncionario"
                     component={DeleteFuncionario}
                     options={{
-                        title: 'Excluir Funcionario',
+                        title: 'Excluir Funcionário',
                         headerStyle: {
-                            backgroundColor: '#D1503A',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -171,7 +171,7 @@ const App = () => {
                     options={{
                         title: 'Atualizar Tipo de Serviço',
                         headerStyle: {
-                            backgroundColor: '#A45BB9',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -186,7 +186,7 @@ const App = () => {
                     options={{
                         title: 'Visualizar Tipo de Serviço',
                         headerStyle: {
-                            backgroundColor: '#F9AD29',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -199,9 +199,9 @@ const App = () => {
                     name="ViewAllTiposServicos"
                     component={ViewAllTipoServico}
                     options={{
-                        title: 'Visualizar Todos os Tipos de Serviços',
+                        title: 'Todos Tipos de Serviços',
                         headerStyle: {
-                            backgroundColor: '#384F62',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -216,7 +216,7 @@ const App = () => {
                     options={{
                         title: 'Excluir Tipo de Serviço',
                         headerStyle: {
-                            backgroundColor: '#D1503A',
+                            backgroundColor: '#2992C4',
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {

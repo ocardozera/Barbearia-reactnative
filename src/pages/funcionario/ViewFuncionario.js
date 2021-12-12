@@ -35,9 +35,9 @@ const ViewFuncionario = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
-          <Mytext text="Filtro de Funcionário" />
           <Mytextinput
-            placeholder="Entre com o Código do Funcionário"
+            placeholder="Digite o Código do Funcionário"
+            style={{ padding: 10 }}
             onChangeText={
               (inputUserId) => setInputUserId(inputUserId)
             }
@@ -50,9 +50,9 @@ const ViewFuncionario = () => {
               marginRight: 35,
               marginTop: 10
             }}>
-            <Text>Código : {userData.funcionario_id}</Text>
-            <Text>Nome : {userData.funcionario_nome}</Text>
-            <Text>Telefone : {userData.funcionario_telefone}</Text>
+            <Text style={{ fontSize: 18 }}>Código : {userData.funcionario_id}</Text>
+            <Text style={{ fontSize: 18}}>Nome : {userData.funcionario_nome}</Text>
+            <Text style={{ fontSize: 18 }}>Telefone : {userData.funcionario_telefone}</Text>
           </View>
         </View>
       </View>

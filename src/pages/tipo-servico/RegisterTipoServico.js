@@ -4,11 +4,12 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     Alert,
-    SafeAreaView,
+    SafeAreaView, StyleSheet,
 } from 'react-native';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
+import {TextInputMask} from "react-native-masked-text";
 
 const db = DatabaseConnection.getConnection();
 
@@ -62,21 +63,34 @@ const RegisterTipoServico = ({ navigation }) => {
                             behavior="padding"
                             style={{ flex: 1, justifyContent: 'space-between' }}>
                             <Mytextinput
-                                placeholder="Entre com o Nome do Serviço"
+                                placeholder="Nome do Serviço"
                                 onChangeText={
                                     (nomeServico) => setNomeServico(nomeServico)
                                 }
                                 style={{ padding: 10 }}
                             />
-                            <Mytextinput
-                                placeholder="Entre com o valor do serviço"
+
+                            <TextInputMask
+                                placeholder="Valor do Serviço R$"
+                                type={'money'}
+                                style={styles.inputText}
+                                keyboardType="numeric"
+                                blurOnSubmit={false}
+                                underlineColorAndroid="transparent"
+                                placeholderTextColor="#00AD98"
+                                options={{
+                                    precision: 2,
+                                    separator: ',',
+                                    delimiter: '.',
+                                    unit: 'R$',
+                                    suffixUnit: ''
+                                }}
+                                value={precoServico}
                                 onChangeText={
                                     (precoServico) => setPrecoServico(precoServico)
                                 }
-                                maxLength={11}
-                                keyboardType="numeric"
-                                style={{ padding: 10 }}
                             />
+
                             <Mybutton title="Salvar" customClick={register_user} />
                         </KeyboardAvoidingView>
                     </ScrollView>
@@ -85,5 +99,18 @@ const RegisterTipoServico = ({ navigation }) => {
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    inputText: {
+        marginLeft: 25,
+        marginRight: 25,
+        marginTop: 10,
+        borderColor: '#00AD98',
+        borderWidth: 1,
+        height: 50,
+        padding: 10,
+        borderRadius: 20,
+    },
+});
 
 export default RegisterTipoServico;

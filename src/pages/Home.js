@@ -43,22 +43,22 @@ const Home = ({ navigation }) => {
                     <View style={{ flex: 1 }}>
 
                         <MyImageButton
-                            title="Registro de Funcionários"
-                            btnColor='#2992C4'
+                            title="Controle dos Funcionários  "
+                            btnColor='#04abba'
                             btnIcon="check"
                             customClick={() => navigation.navigate('HomeScreenFuncionario')}
                         />
 
                         <MyImageButton
-                            title="Registro de Tipos de Serviços"
-                            btnColor='#00FA9A'
+                            title="Controle dos Tipos de Serviços  "
+                            btnColor='#06c72d'
                             btnIcon="check"
                             customClick={() => navigation.navigate('HomeScreenTipoServico')}
                         />
 
                         <MyImageButton
-                            title="Registro de Serviços Realizados"
-                            btnColor='#FFD700'
+                            title="Controle dos Serviços Realizados  "
+                            btnColor='#7409d9'
                             btnIcon="check"
                             customClick={() => navigation.navigate('HomeScreenServicoRealizado')}
                         />

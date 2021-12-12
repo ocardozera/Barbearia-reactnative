@@ -11,33 +11,33 @@ const HomeScreenServicoRealizado = ({ navigation }) => {
                     <View style={{ flex: 1 }}>
 
                         <MyImageButton
-                            title="Registrar Serviço Realizado"
+                            title="Registrar Serviço Realizado  "
                             btnColor='#2992C4'
                             btnIcon="user-plus"
                             customClick={() => navigation.navigate('RegisterServicoRealizado')}
                         />
 
                         <MyImageButton
-                            title="Atualizar Serviço Realizado"
+                            title="Atualizar Serviço Realizado  "
                             btnColor='#A45BB9'
                             btnIcon="user-circle"
                             customClick={() => navigation.navigate('')}
                         />
 
                         <MyImageButton
-                            title="Visualizar um Serviço Realizado"
+                            title="Visualizar um Serviço Realizado  "
                             btnColor='#F9AD29'
                             btnIcon="user"
                             customClick={() => navigation.navigate('')}
                         />
                         <MyImageButton
-                            title="Visualizar Todos os Serviços Realizados"
+                            title="Todos Serviços Realizados  "
                             btnColor='#384F62'
                             btnIcon="users"
                             customClick={() => navigation.navigate('')}
                         />
                         <MyImageButton
-                            title="Excluir Serviço Realizado"
+                            title="Excluir Serviço Realizado  "
                             btnColor='#D1503A'
                             btnIcon="user-times"
                             customClick={() => navigation.navigate('')}

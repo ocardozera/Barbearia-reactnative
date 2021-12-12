@@ -41,13 +41,13 @@ const DeleteTipoServico = ({ navigation }) => {
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={{ flex: 1 }}>
                     <Mytextinput
-                        placeholder="Entre com o Código do Tipo de Serviço"
+                        placeholder="Digite o Código do Tipo de Serviço"
                         onChangeText={
                             (inputServicod) => setInputServicoId(inputServicod)
                         }
                         style={{ padding: 10 }}
                     />
-                    <Mybutton title="Excluir Tipo Serviço" customClick={deleteUser} />
+                    <Mybutton title="Excluir Tipo de Serviço" customClick={deleteUser} />
                 </View>
             </View>
         </SafeAreaView>

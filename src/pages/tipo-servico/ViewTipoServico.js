@@ -35,9 +35,8 @@ const ViewTipoServico = () => {
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={{ flex: 1 }}>
-                    <Mytext text="Filtro de Tipo de Serviço" />
                     <Mytextinput
-                        placeholder="Entre com o Código do Tipo de Serviço"
+                        placeholder="Digite o Código do Tipo de Serviço"
                         onChangeText={
                             (inputServicoId) => setInputServicoId(inputServicoId)
                         }
