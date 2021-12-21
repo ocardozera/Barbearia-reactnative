@@ -61,8 +61,8 @@ const RegisterServicoRealizado = ({navigation}) => {
     let [nomeServico, setNomeServico] = useState('');
     let [precoServico, setPrecoServico] = useState('')
     //
-    let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('TESTE');
-    // let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
+    let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('');
+    let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
 
 
     let register_user = () => {
@@ -110,6 +110,8 @@ const RegisterServicoRealizado = ({navigation}) => {
 
     let [listaFuncionarios, setListaFuncionarios] = useState([]);
 
+    let [listaTipoServico, setListaTipoServico] = useState([]);
+
 
 
         useEffect(() => {
@@ -120,6 +122,16 @@ const RegisterServicoRealizado = ({navigation}) => {
                         [],
                         (tx, results) => {
                             setListaFuncionarios(Array.from(results.rows));
+                        }
+                    );
+                });
+
+                db.transaction((tx) => {
+                    tx.executeSql(
+                        'SELECT * FROM table_tipo_servico',
+                        [],
+                        (tx, results) => {
+                            setListaTipoServico(Array.from(results.rows));
                         }
                     );
                 });
@@ -182,8 +194,21 @@ const RegisterServicoRealizado = ({navigation}) => {
                             }
                             </Picker>
 
+                            <Picker
+                                style={styles.button}
+                                multiple={false}
+                                selectedValue={selectedValueTipoServico}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>{
+                                listaTipoServico.map((v) => (
+                                        <Picker.Item label={v.nome_servico} value={v.tipo_servico_id} key={v.tipo_servico_id} />
+                                    )
+                                )
+                            }
+                            </Picker>
+
                             {/*<Picker*/}
                             {/*    style={styles.button}*/}
+                            {/*    multiple={false}*/}
                             {/*    selectedValue={listaFuncionarios}*/}
                             {/*    onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>{*/}
                             {/*    listaTipoServico.map((v) => {*/}
