@@ -64,6 +64,8 @@ const RegisterServicoRealizado = ({navigation}) => {
     let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('');
     let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
 
+    console.log("selectedValueFuncionario" + selectedValueFuncionario);
+    console.log("selectedValueTipoServico" + selectedValueTipoServico);
 
     let register_user = () => {
         console.log(nomeServico, precoServico, setNomeCliente, setFuncionario);
@@ -86,9 +88,16 @@ const RegisterServicoRealizado = ({navigation}) => {
         }
         db.transaction(function (tx) {
             tx.executeSql(
-                'INSERT INTO table_servico_realizado (funcionario_nome, cliente_nome, nome_servico, preco_servico) VALUES (?,?)',
-                [nomeServico, precoServico],
+                'INSERT INTO table_servico_realizado (funcionario_nome, cliente_nome, nome_servico, preco_servico, funcionario_id, tipo_servico_id) VALUES (?,?,?,?,?,?)',
+                [nomeFuncionario, nomeCliente, nomeServico, precoServico, selectedValueFuncionario, selectedValueTipoServico],
                 (tx, results) => {
+                    console.log("nomeFuncionario: " + nomeFuncionario);
+                    console.log("nomeCliente: " + nomeCliente);
+                    console.log("nomeServico: " + nomeServico);
+                    console.log("precoServico: " + precoServico);
+                    console.log("selectedValueFuncionario: " + selectedValueFuncionario);
+                    console.log("selectedValueTipoServico: " + selectedValueTipoServico);
+
                     console.log('Results', results.rowsAffected);
                     if (results.rowsAffected > 0) {
                         Alert.alert(
