@@ -28,7 +28,7 @@ const Home = ({ navigation }) => {
                         );
 
                         txn.executeSql(
-                            'CREATE TABLE IF NOT EXISTS table_servico_realizado(servico_realizado_id INTEGER PRIMARY KEY AUTOINCREMENT, funcionario_nome VARCHAR(99), cliente_nome VARCHAR(99), nome_servico VARCHAR(99),  preco_servico VARCHAR(6), funcionario_id INT NOT NULL, tipo_servico_id INT NOT NULL, FOREIGN KEY (funcionario_id) REFERENCES table_funcionario (funcionario_id), FOREIGN KEY(tipo_servico_id) REFERENCES table_tipo_servico (tipo_servico_id))',
+                            'CREATE TABLE IF NOT EXISTS table_servico_realizado(servico_realizado_id INTEGER PRIMARY KEY AUTOINCREMENT, cliente_nome VARCHAR(99), funcionario_id INT NOT NULL, tipo_servico_id INT NOT NULL, FOREIGN KEY (funcionario_id) REFERENCES table_funcionario (funcionario_id), FOREIGN KEY(tipo_servico_id) REFERENCES table_tipo_servico (tipo_servico_id))',
                             []
                         );
                     }

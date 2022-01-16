@@ -63,38 +63,24 @@ const RegisterServicoRealizado = ({navigation}) => {
     //
     let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('');
     let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
+    let [selectedValueTipoServicoPreco, setSelectedValueTipoServicoPreco] = useState('');
 
     console.log("selectedValueFuncionario" + selectedValueFuncionario);
     console.log("selectedValueTipoServico" + selectedValueTipoServico);
+    console.log("selectedValueTipoServicoPreco" + selectedValueTipoServicoPreco);
 
     let register_user = () => {
-        console.log(nomeServico, precoServico, setNomeCliente, setFuncionario);
 
-        if (!nomeFuncionario) {
-            alert('Por favor preencha o nome do Funcionario!');
-            return;
-        }
         if (!nomeCliente) {
             alert('Por favor preencha o nome do Cliente!');
             return;
         }
-        if (!nomeServico) {
-            alert('Por favor preencha o nome do Serviço!');
-            return;
-        }
-        if (!precoServico) {
-            alert('Por favor preencha o preço do serviço!');
-            return;
-        }
         db.transaction(function (tx) {
             tx.executeSql(
-                'INSERT INTO table_servico_realizado (funcionario_nome, cliente_nome, nome_servico, preco_servico, funcionario_id, tipo_servico_id) VALUES (?,?,?,?,?,?)',
-                [nomeFuncionario, nomeCliente, nomeServico, precoServico, selectedValueFuncionario, selectedValueTipoServico],
+                'INSERT INTO table_servico_realizado (cliente_nome, funcionario_id, tipo_servico_id) VALUES (?,?,?)',
+                [nomeCliente, selectedValueFuncionario, selectedValueTipoServico],
                 (tx, results) => {
-                    console.log("nomeFuncionario: " + nomeFuncionario);
                     console.log("nomeCliente: " + nomeCliente);
-                    console.log("nomeServico: " + nomeServico);
-                    console.log("precoServico: " + precoServico);
                     console.log("selectedValueFuncionario: " + selectedValueFuncionario);
                     console.log("selectedValueTipoServico: " + selectedValueTipoServico);
 
@@ -160,13 +146,13 @@ const RegisterServicoRealizado = ({navigation}) => {
                             behavior="padding"
                             style={{flex: 1, justifyContent: 'space-between'}}>
 
-                            <Mytextinput
-                                placeholder="Nome do Funcionário"
-                                onChangeText={
-                                    (nomeFuncionario) => setFuncionario(nomeFuncionario)
-                                }
-                                style={{padding: 10}}
-                            />
+                            {/*<Mytextinput*/}
+                            {/*    placeholder="Nome do Funcionário"*/}
+                            {/*    onChangeText={*/}
+                            {/*        (nomeFuncionario) => setFuncionario(nomeFuncionario)*/}
+                            {/*    }*/}
+                            {/*    style={{padding: 10}}*/}
+                            {/*/>*/}
                             <Mytextinput
                                 placeholder="Nome do Cliente"
                                 onChangeText={
@@ -174,22 +160,22 @@ const RegisterServicoRealizado = ({navigation}) => {
                                 }
                                 style={{padding: 10}}
                             />
-                            <Mytextinput
-                                placeholder="Nome do Serviço"
-                                onChangeText={
-                                    (nomeServico) => setNomeServico(nomeServico)
-                                }
-                                style={{padding: 10}}
-                            />
-                            <Mytextinput
-                                placeholder="Valor do serviço"
-                                onChangeText={
-                                    (precoServico) => setPrecoServico(precoServico)
-                                }
-                                maxLength={11}
-                                keyboardType="numeric"
-                                style={{padding: 10}}
-                            />
+                            {/*<Mytextinput*/}
+                            {/*    placeholder="Nome do Serviço"*/}
+                            {/*    onChangeText={*/}
+                            {/*        (nomeServico) => setNomeServico(nomeServico)*/}
+                            {/*    }*/}
+                            {/*    style={{padding: 10}}*/}
+                            {/*/>*/}
+                            {/*<Mytextinput*/}
+                            {/*    placeholder="Valor do serviço"*/}
+                            {/*    onChangeText={*/}
+                            {/*        (precoServico) => setPrecoServico(precoServico)*/}
+                            {/*    }*/}
+                            {/*    maxLength={11}*/}
+                            {/*    keyboardType="numeric"*/}
+                            {/*    style={{padding: 10}}*/}
+                            {/*/>*/}
 
                             <Picker
                                 style={styles.button}
@@ -197,7 +183,8 @@ const RegisterServicoRealizado = ({navigation}) => {
                                 selectedValue={selectedValueFuncionario}
                                 onValueChange={(itemValue, itemIndex) => setSelectedValueFuncionario(itemValue)}>{
                                 listaFuncionarios.map((v) => (
-                                    <Picker.Item label={v.funcionario_nome} value={v.funcionario_id} key={v.funcionario_id} />
+                                        <Picker.Item label={v.funcionario_nome} value={v.funcionario_id}
+                                                     key={v.funcionario_id}/>
                                     )
                                 )
                             }
@@ -207,27 +194,16 @@ const RegisterServicoRealizado = ({navigation}) => {
                                 style={styles.button}
                                 multiple={false}
                                 selectedValue={selectedValueTipoServico}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>{
-                                listaTipoServico.map((v) => (
-                                        <Picker.Item label={v.nome_servico} value={v.tipo_servico_id} key={v.tipo_servico_id} />
+                                onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>
+                                {listaTipoServico.map((v) => (
+                                        <Picker.Item label={v.nome_servico + " - " + v.preco_servico} value={v.tipo_servico_id}
+                                                     key={v.tipo_servico_id}/>
                                     )
                                 )
                             }
                             </Picker>
 
-                            {/*<Picker*/}
-                            {/*    style={styles.button}*/}
-                            {/*    multiple={false}*/}
-                            {/*    selectedValue={listaFuncionarios}*/}
-                            {/*    onValueChange={(itemValue, itemIndex) => setSelectedValueTipoServico(itemValue)}>{*/}
-                            {/*    listaTipoServico.map((v) => {*/}
-                            {/*        return <Picker.Item label={v.nome_servico} value={v.tipo_servico_id}/>*/}
-                            {/*    })*/}
-                            {/*}*/}
-                            {/*</Picker>*/}
-
                             <Mybutton title="Salvar" customClick={register_user}/>
-
                         </KeyboardAvoidingView>
                     </ScrollView>
 
@@ -239,11 +215,12 @@ const RegisterServicoRealizado = ({navigation}) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginLeft: 35,
-        marginRight: 35,
+        marginLeft: 25,
+        marginRight: 25,
         marginTop: 10,
         borderColor: '#00AD98',
         borderWidth: 1,
+        borderRadius: 20,
         right: 35,
     },
 });
