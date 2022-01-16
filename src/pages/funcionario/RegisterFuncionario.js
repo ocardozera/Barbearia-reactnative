@@ -19,7 +19,7 @@ const RegisterFuncionario = ({ navigation }) => {
 
   let register_user = () => {
     if (!userName) {
-      alert('Por favor preencha o nome !');
+      alert('Por favor preencha o nome do funcinário!');
       return;
     }
     if (userName.length < 8) {

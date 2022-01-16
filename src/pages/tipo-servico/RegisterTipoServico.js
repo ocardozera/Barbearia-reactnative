@@ -22,7 +22,7 @@ const RegisterTipoServico = ({ navigation }) => {
         console.log(nomeServico, precoServico);
 
         if (!nomeServico) {
-            alert('Por favor preencha o nome do serviço !');
+            alert('Por favor preencha o nome do serviço!');
             return;
         }
         if (!precoServico) {

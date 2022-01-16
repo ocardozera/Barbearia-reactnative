@@ -53,21 +53,12 @@ const buscaTipoServico = () => {
 };
 
 const RegisterServicoRealizado = ({navigation}) => {
-    // buscaFuncionarios();
-    // buscaTipoServico();
-
-    let [nomeFuncionario, setFuncionario] = useState('');
     let [nomeCliente, setNomeCliente] = useState('');
-    let [nomeServico, setNomeServico] = useState('');
-    let [precoServico, setPrecoServico] = useState('')
-    //
     let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('');
     let [selectedValueTipoServico, setSelectedValueTipoServico] = useState('');
-    let [selectedValueTipoServicoPreco, setSelectedValueTipoServicoPreco] = useState('');
 
     console.log("selectedValueFuncionario" + selectedValueFuncionario);
     console.log("selectedValueTipoServico" + selectedValueTipoServico);
-    console.log("selectedValueTipoServicoPreco" + selectedValueTipoServicoPreco);
 
     let register_user = () => {
 
@@ -75,6 +66,22 @@ const RegisterServicoRealizado = ({navigation}) => {
             alert('Por favor preencha o nome do Cliente!');
             return;
         }
+
+        if (nomeCliente.length < 6) {
+            alert('Nome do Cliente possuír ao menos 5 dígitos!');
+            return;
+        }
+
+        if (!selectedValueFuncionario) {
+            alert('Por favor preencha o nome do Funcionário!');
+            return;
+        }
+
+        if (!selectedValueTipoServico) {
+            alert('Por favor preencha o nome/preço do Serviço!');
+            return;
+        }
+
         db.transaction(function (tx) {
             tx.executeSql(
                 'INSERT INTO table_servico_realizado (cliente_nome, funcionario_id, tipo_servico_id) VALUES (?,?,?)',
@@ -146,13 +153,6 @@ const RegisterServicoRealizado = ({navigation}) => {
                             behavior="padding"
                             style={{flex: 1, justifyContent: 'space-between'}}>
 
-                            {/*<Mytextinput*/}
-                            {/*    placeholder="Nome do Funcionário"*/}
-                            {/*    onChangeText={*/}
-                            {/*        (nomeFuncionario) => setFuncionario(nomeFuncionario)*/}
-                            {/*    }*/}
-                            {/*    style={{padding: 10}}*/}
-                            {/*/>*/}
                             <Mytextinput
                                 placeholder="Nome do Cliente"
                                 onChangeText={
@@ -160,23 +160,6 @@ const RegisterServicoRealizado = ({navigation}) => {
                                 }
                                 style={{padding: 10}}
                             />
-                            {/*<Mytextinput*/}
-                            {/*    placeholder="Nome do Serviço"*/}
-                            {/*    onChangeText={*/}
-                            {/*        (nomeServico) => setNomeServico(nomeServico)*/}
-                            {/*    }*/}
-                            {/*    style={{padding: 10}}*/}
-                            {/*/>*/}
-                            {/*<Mytextinput*/}
-                            {/*    placeholder="Valor do serviço"*/}
-                            {/*    onChangeText={*/}
-                            {/*        (precoServico) => setPrecoServico(precoServico)*/}
-                            {/*    }*/}
-                            {/*    maxLength={11}*/}
-                            {/*    keyboardType="numeric"*/}
-                            {/*    style={{padding: 10}}*/}
-                            {/*/>*/}
-
                             <Picker
                                 style={styles.button}
                                 multiple={false}
