@@ -20,6 +20,7 @@ import DeleteTipoServico from "./src/pages/tipo-servico/DeleteTipoServico";
 import Home from "./src/pages/Home";
 import HomeScreenServicoRealizado from "./src/pages/servico-realizado/HomeScreenServicoRealizado";
 import RegisterServicoRealizado from "./src/pages/servico-realizado/RegisterServicoRealizado";
+import ViewAllServicoRealizado from "./src/pages/servico-realizado/ViewAllServicoRealizado";
 
 
 const Stack = createStackNavigator();
@@ -244,6 +245,21 @@ const App = () => {
                     component={RegisterServicoRealizado}
                     options={{
                         title: 'Cadastrar Serviço Realizado',
+                        headerStyle: {
+                            backgroundColor: '#2992C4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+
+                <Stack.Screen
+                    name="ViewAllServicoRealizado"
+                    component={ViewAllServicoRealizado}
+                    options={{
+                        title: 'Todos Serviços Realizados',
                         headerStyle: {
                             backgroundColor: '#2992C4',
                         },
