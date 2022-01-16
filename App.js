@@ -22,6 +22,7 @@ import HomeScreenServicoRealizado from "./src/pages/servico-realizado/HomeScreen
 import RegisterServicoRealizado from "./src/pages/servico-realizado/RegisterServicoRealizado";
 import ViewAllServicoRealizado from "./src/pages/servico-realizado/ViewAllServicoRealizado";
 import ViewServicoRealizado from "./src/pages/servico-realizado/ViewServicoRealizado";
+import UpdateServicoRealizado from "./src/pages/servico-realizado/UpdateServicoRealizado";
 
 
 const Stack = createStackNavigator();
@@ -246,6 +247,21 @@ const App = () => {
                     component={RegisterServicoRealizado}
                     options={{
                         title: 'Cadastrar Serviço Realizado',
+                        headerStyle: {
+                            backgroundColor: '#2992C4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+
+                <Stack.Screen
+                    name="UpdateServicoRealizado"
+                    component={UpdateServicoRealizado}
+                    options={{
+                        title: 'Atualizar Serviço Realizado',
                         headerStyle: {
                             backgroundColor: '#2992C4',
                         },

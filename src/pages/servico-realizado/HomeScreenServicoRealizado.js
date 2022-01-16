@@ -21,14 +21,14 @@ const HomeScreenServicoRealizado = ({ navigation }) => {
                             title="Atualizar Serviço Realizado  "
                             btnColor='#A45BB9'
                             btnIcon="user-circle"
-                            customClick={() => navigation.navigate('')}
+                            customClick={() => navigation.navigate('UpdateServicoRealizado')}
                         />
 
                         <MyImageButton
                             title="Visualizar um Serviço Realizado  "
                             btnColor='#F9AD29'
                             btnIcon="user"
-                            customClick={() => navigation.navigate('ViewServicoRealizado')}
+                            customClick={() => navigation.navigate('')}
                         />
                         <MyImageButton
                             title="Todos Serviços Realizados  "

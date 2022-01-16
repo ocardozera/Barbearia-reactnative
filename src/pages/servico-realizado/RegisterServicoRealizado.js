@@ -13,45 +13,6 @@ import { DatabaseConnection } from '../../database/database-connection';
 
 const db = DatabaseConnection.getConnection();
 
-
-const listaTipoServico = [];
-
-const buscaFuncionarios = () => {
-    if (listaFuncionarios.length == 0) {
-        useEffect(() => {
-            db.transaction((tx) => {
-                tx.executeSql(
-                    'SELECT * FROM table_funcionario',
-                    [],
-                    (tx, results) => {
-                        var temp = [];
-                        for (let i = 0; i < results.rows.length; ++i)
-                            listaFuncionarios.push(results.rows.item(i));
-                    }
-                );
-            });
-        }, []);
-    }
-};
-
-const buscaTipoServico = () => {
-    if (listaTipoServico.length == 0) {
-        useEffect(() => {
-            db.transaction((tx) => {
-                tx.executeSql(
-                    'SELECT * FROM table_tipo_servico',
-                    [],
-                    (tx, results) => {
-                        var temp = [];
-                        for (let i = 0; i < results.rows.length; ++i)
-                            listaTipoServico.push(results.rows.item(i));
-                    }
-                );
-            });
-        }, []);
-    }
-};
-
 const RegisterServicoRealizado = ({navigation}) => {
     let [nomeCliente, setNomeCliente] = useState('');
     let [selectedValueFuncionario, setSelectedValueFuncionario] = useState('');

@@ -17,7 +17,7 @@ const ViewServicoRealizado = () => {
         db.transaction((tx) => {
             tx.executeSql(
                 // 'SELECT * FROM table_tipo_servico where tipo_servico_id = ?',
-                'SELECT tbs.servico_realizado_id, tbs.cliente_nome, tf.funcionario_nome, tts.nome_servico, tts.preco_servico FROM table_servico_realizado tbs, table_funcionario tf, table_tipo_servico tts WHERE tbs.servico_realizado_id = ? AND tbs.funcionario_id = tf.funcionario_id AND tbs.tipo_servico_id = tts.tipo_servico_id;\n',
+                'SELECT tbs.servico_realizado_id, tbs.cliente_nome, tf.funcionario_nome, tts.nome_servico, tts.preco_servico FROM table_servico_realizado tbs, table_funcionario tf, table_tipo_servico tts WHERE tbs.servico_realizado_id = ? AND tbs.funcionario_id = tf.funcionario_id AND tbs.tipo_servico_id = tts.tipo_servico_id',
                 [inputServicoId],
                 (tx, results) => {
                     var len = results.rows.length;
