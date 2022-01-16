@@ -28,7 +28,7 @@ const HomeScreenServicoRealizado = ({ navigation }) => {
                             title="Visualizar um Serviço Realizado  "
                             btnColor='#F9AD29'
                             btnIcon="user"
-                            customClick={() => navigation.navigate('')}
+                            customClick={() => navigation.navigate('ViewServicoRealizado')}
                         />
                         <MyImageButton
                             title="Todos Serviços Realizados  "
