@@ -1,29 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Text, View, SafeAreaView, StyleSheet } from 'react-native';
 import { DatabaseConnection } from '../../database/database-connection';
+import database from "../../config/firabaseConfig";
 
 const db = DatabaseConnection.getConnection();
 
 const ViewAllFuncionario = () => {
   let [flatListItems, setFlatListItems] = useState([]);
 
-  useEffect(() => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT * FROM table_funcionario',
-        [],
-        (tx, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i)
-            temp.push(results.rows.item(i));
-            console.log(temp);
-          setFlatListItems(temp);
+    const [task, setTask] = useState([]);
 
+    function deleteTask(id) {
+        database.collection("Barbearia-ReactNative").doc(id).delete();
+    }
 
-        }
-      );
-    });
-  }, []);
+    useEffect(() => {
+        database.collection("Barbearia-ReactNative").onSnapshot((query) => {
+            const list = [];
+            query.forEach((doc) => {
+                list.push({ ...doc.data(), id: doc.id });
+            });
+            setTask(list);
+        });
+    }, []);
+
+  // useEffect(() => {
+  //   db.transaction((tx) => {
+  //     tx.executeSql(
+  //       'SELECT * FROM table_funcionario',
+  //       [],
+  //       (tx, results) => {
+  //         var temp = [];
+  //         for (let i = 0; i < results.rows.length; ++i)
+  //           temp.push(results.rows.item(i));
+  //           console.log(temp);
+  //         setFlatListItems(temp);
+  //
+  //
+  //       }
+  //     );
+  //   });
+  // }, []);
 
   let listItemView = (item) => {
     return (
@@ -45,13 +62,14 @@ const ViewAllFuncionario = () => {
   };
 
   return (
+
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
           <FlatList
             style={{ marginTop: 30 }}
             contentContainerStyle={{ paddingHorizontal: 20 }}
-            data={flatListItems}
+            data={task}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => listItemView(item)}
           />

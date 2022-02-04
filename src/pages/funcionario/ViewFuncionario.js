@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView } from 'react-native';
-import Mytext from '../components/Mytext';
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import { DatabaseConnection } from '../../database/database-connection';
@@ -12,7 +11,6 @@ const ViewFuncionario = () => {
   let [userData, setUserData] = useState({});
 
   let searchUser = () => {
-    console.log(inputUserId);
     setUserData({});
     db.transaction((tx) => {
       tx.executeSql(
@@ -32,6 +30,7 @@ const ViewFuncionario = () => {
   };
 
   return (
+
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>

@@ -1,5 +1,5 @@
 import React,{ useEffect }  from 'react';
-import {View, SafeAreaView, Button, StyleSheet, Text} from 'react-native';
+import {View, SafeAreaView, Text} from 'react-native';
 import MyImageButton from './components/MyImageButton';
 import {DatabaseConnection} from "../database/database-connection";
 import { Linking } from 'react-native'
@@ -87,7 +87,6 @@ const Home = ({ navigation }) => {
             </View>
         </SafeAreaView>
     );
-
 };
 
 export default Home;
