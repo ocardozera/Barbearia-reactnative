@@ -24,6 +24,7 @@ import ViewAllServicoRealizado from "./src/pages/servico-realizado/ViewAllServic
 import ViewServicoRealizado from "./src/pages/servico-realizado/ViewServicoRealizado";
 import UpdateServicoRealizado from "./src/pages/servico-realizado/UpdateServicoRealizado";
 import DeleteServicoRealizado from "./src/pages/servico-realizado/DeleteServicoRealizado";
+import RelatorioServicoRealizado from "./src/pages/servico-realizado/RelatorioServicoRealizado";
 
 
 const Stack = createStackNavigator();
@@ -308,6 +309,21 @@ const App = () => {
                     component={DeleteServicoRealizado}
                     options={{
                         title: 'Excluir Serviço Realizado',
+                        headerStyle: {
+                            backgroundColor: '#2992C4',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+
+                <Stack.Screen
+                    name="RelatorioServicoRealizado"
+                    component={RelatorioServicoRealizado}
+                    options={{
+                        title: 'Relatório Serviço Realizado',
                         headerStyle: {
                             backgroundColor: '#2992C4',
                         },

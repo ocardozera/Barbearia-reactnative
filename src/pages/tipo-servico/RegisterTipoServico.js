@@ -79,18 +79,17 @@ const RegisterTipoServico = ({ navigation }) => {
                                 underlineColorAndroid="transparent"
                                 placeholderTextColor="#00AD98"
                                 options={{
-                                    precision: 2,
-                                    separator: ',',
-                                    delimiter: '.',
-                                    unit: 'R$',
-                                    suffixUnit: ''
+                                    // precision: 2,
+                                    // separator: '.',
+                                    // delimiter: '.',
+                                    // unit: 'R$',
+                                    // suffixUnit: ''
                                 }}
                                 value={precoServico}
                                 onChangeText={
                                     (precoServico) => setPrecoServico(precoServico)
                                 }
                             />
-
                             <Mybutton title="Salvar" customClick={register_user} />
                         </KeyboardAvoidingView>
                     </ScrollView>

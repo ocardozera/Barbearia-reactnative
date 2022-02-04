@@ -42,6 +42,12 @@ const HomeScreenServicoRealizado = ({ navigation }) => {
                             btnIcon="user-times"
                             customClick={() => navigation.navigate('DeleteServicoRealizado')}
                         />
+                        <MyImageButton
+                            title="Relatorio Serviço Realizado  "
+                            btnColor='#384F62'
+                            btnIcon="user-times"
+                            customClick={() => navigation.navigate('RelatorioServicoRealizado')}
+                        />
                     </View>
                 </View>
 
