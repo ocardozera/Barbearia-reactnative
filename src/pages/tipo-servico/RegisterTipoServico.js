@@ -70,26 +70,35 @@ const RegisterTipoServico = ({ navigation }) => {
                                 style={{ padding: 10 }}
                             />
 
-                            <TextInputMask
-                                placeholder="Valor do Serviço R$"
-                                type={'money'}
-                                style={styles.inputText}
+                            <Mytextinput
+                                placeholder="Valor do Serviço"
                                 keyboardType="numeric"
-                                blurOnSubmit={false}
-                                underlineColorAndroid="transparent"
-                                placeholderTextColor="#00AD98"
-                                options={{
-                                    // precision: 2,
-                                    // separator: '.',
-                                    // delimiter: '.',
-                                    // unit: 'R$',
-                                    // suffixUnit: ''
-                                }}
-                                value={precoServico}
                                 onChangeText={
-                                    (precoServico) => setPrecoServico(precoServico)
+                                    (precoServico) =>  setPrecoServico(precoServico)
                                 }
+                                style={{ padding: 10 }}
                             />
+
+                            {/*<TextInputMask*/}
+                            {/*    placeholder="Valor do Serviço R$"*/}
+                            {/*    type={'money'}*/}
+                            {/*    style={styles.inputText}*/}
+                            {/*    keyboardType="numeric"*/}
+                            {/*    blurOnSubmit={false}*/}
+                            {/*    underlineColorAndroid="transparent"*/}
+                            {/*    placeholderTextColor="#00AD98"*/}
+                            {/*    options={{*/}
+                            {/*        precision: 2,*/}
+                            {/*        separator: '.',*/}
+                            {/*        delimiter: '.',*/}
+                            {/*        unit: '',*/}
+                            {/*        suffixUnit: ''*/}
+                            {/*    }}*/}
+                            {/*    value={precoServico}*/}
+                            {/*    onChangeText={*/}
+                            {/*        (precoServico) => setPrecoServico(precoServico)*/}
+                            {/*    }*/}
+                            {/*/>*/}
                             <Mybutton title="Salvar" customClick={register_user} />
                         </KeyboardAvoidingView>
                     </ScrollView>

@@ -28,7 +28,7 @@ const RegisterServicoRealizado = ({navigation}) => {
             return;
         }
 
-        if (nomeCliente.length < 6) {
+        if (nomeCliente.length < 4) {
             alert('Nome do Cliente possuír ao menos 5 dígitos!');
             return;
         }

@@ -34,7 +34,7 @@ const RelatorioServicoRealizado = () => {
                 <Text style={styles.textheader}>Total de Serviços Realizados</Text>
                 <Text style={styles.textbottom}>{tipoServico.count}</Text>
 
-                <Text style={styles.textheader}>Ganho Total por Funcionário Realizdo</Text>
+                <Text style={styles.textheader}>Ganho Total dos Serviços Realizados</Text>
                 <Text style={styles.textbottom}>{tipoServico.sum}</Text>
 
             </View>

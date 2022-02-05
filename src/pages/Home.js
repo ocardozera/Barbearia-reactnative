@@ -25,7 +25,7 @@ const Home = ({ navigation }) => {
                             []
                         );
                         txn.executeSql(
-                            'CREATE TABLE IF NOT EXISTS table_tipo_servico(tipo_servico_id INTEGER PRIMARY KEY AUTOINCREMENT, nome_servico VARCHAR(99), preco_servico VARCHAR(6))',
+                            'CREATE TABLE IF NOT EXISTS table_tipo_servico(tipo_servico_id INTEGER PRIMARY KEY AUTOINCREMENT, nome_servico VARCHAR(99), preco_servico DOUBLE(6))',
                             []
                         );
 
